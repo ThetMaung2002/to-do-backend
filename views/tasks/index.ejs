@@ -1,0 +1,276 @@
+<%- include('../partials/header') %> <!-- Include Header -->
+
+<style>
+  /* Modern CSS Reset and Variables */
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #6e68e6;
+  --danger-color: #ef4444;
+  --danger-hover: #dc2626;
+  --success-color: #22c55e;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --background-color: #f9fafb;
+  --card-background: #ffffff;
+  --border-color: #e5e7eb;
+  --spacing-unit: 1rem;
+  --border-radius: 0.75rem;
+  --transition-speed: 0.2s;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* Base Styles */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* Header Styles */
+.site-header {
+  flex: 0;
+  flex-direction: row;
+  background-color: var(--card-background);
+  padding: var(--spacing-unit);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header .logo a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: color var(--transition-speed);
+}
+
+.site-header .navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--spacing-unit);
+}
+
+.site-header .navigation li {
+  margin: 0;
+}
+
+.site-header .navigation a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-speed);
+}
+
+.site-header .navigation a:hover {
+  color: var(--primary-color);
+  background-color: var(--background-color);
+}
+
+/* Main Content Styles */
+h1 {
+  padding: calc(var(--spacing-unit) * 2);
+  font-size: 2rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: all var(--transition-speed);
+  margin: 0 calc(var(--spacing-unit) * 2);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Task List Container */
+.tasks {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: calc(var(--spacing-unit) * 2);
+}
+
+/* Task Card Styles */
+.task {
+  background-color: var(--card-background);
+  margin-bottom: calc(var(--spacing-unit) * 1.5);
+  padding: calc(var(--spacing-unit) * 1.5);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-speed);
+}
+
+.task:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.task h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.task p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0.75rem 0;
+}
+
+/* Status Badge */
+.status {
+  display: inline-block;
+  margin-top: var(--spacing-unit);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background-color: var(--background-color);
+}
+
+.status[data-completed="true"] {
+  color: var(--success-color);
+  background-color: #dcfce7;
+}
+
+.status[data-completed="false"] {
+  color: var(--primary-color);
+  background-color: #dbeafe;
+}
+
+/* Task Actions */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-unit);
+  margin-top: var(--spacing-unit);
+  padding-top: var(--spacing-unit);
+  border-top: 1px solid var(--border-color);
+}
+
+.actions a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-speed);
+}
+
+.actions a:hover {
+  background-color: #dbeafe;
+  color: var(--primary-hover);
+}
+
+.actions button {
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.actions button:hover {
+  background-color: var(--danger-hover);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    padding: var(--spacing-unit);
+    font-size: 1.5rem;
+  }
+  
+  .btn {
+    margin: 0 var(--spacing-unit);
+  }
+  
+  .tasks {
+    padding: var(--spacing-unit);
+  }
+  
+  .task {
+    padding: var(--spacing-unit);
+  }
+  
+  .actions {
+    flex-wrap: wrap;
+  }
+  
+  .actions a,
+  .actions button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .site-header,
+  .btn,
+  .actions {
+    display: none;
+  }
+  
+  .task {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
+</style>
+
+<h1>Tasks</h1>
+<a href="/tasks/new" class="btn">New Task</a>
+
+<div class="tasks">
+  <% tasks.forEach(task => { %>
+    <div class="task">
+      <h3><%= task.title %></h3>
+      <p><%= task.description %></p>
+      <div class="status">
+        Status: <%= task.completed ? 'Completed' : 'Pending' %>
+      </div>
+      <div class="actions">
+        <a href="/tasks/<%= task.id %>/edit">Edit</a>
+        <form action="/tasks/<%= task.id %>/delete" method="POST" style="display: inline;">
+          <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+        </form>
+      </div>
+    </div>
+  <% }); %>
+</div>
+
+<%- include('../partials/footer') %> <!-- Include Footer -->

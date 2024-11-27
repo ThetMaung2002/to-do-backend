@@ -1,0 +1,206 @@
+<%- include('../partials/header') %> <!-- Include Header -->
+
+<style>
+  /* Root Variables */
+  :root {
+    --primary-color: #3b82f6;
+    --primary-hover: #2563eb;
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --background-color: #f9fafb;
+    --card-background: #ffffff;
+    --border-color: #e5e7eb;
+    --input-border: #d1d5db;
+    --input-focus: #93c5fd;
+    --spacing-unit: 1rem;
+    --border-radius: 0.75rem;
+    --transition-speed: 0.2s;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  /* Base Styles */
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  /* Header Styles */
+  .site-header {
+    background-color: var(--card-background);
+    padding: var(--spacing-unit);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .site-header .logo a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: color var(--transition-speed);
+  }
+
+  .site-header .navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: var(--spacing-unit);
+  }
+
+  .site-header .navigation li {
+    margin: 0;
+  }
+
+  .site-header .navigation a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed);
+  }
+
+  .site-header .navigation a:hover {
+    color: var(--primary-color);
+    background-color: var(--background-color);
+  }
+
+  /* Page Title */
+  h1 {
+    padding: calc(var(--spacing-unit) * 2);
+    font-size: 2rem;
+    color: var(--text-primary);
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+  }
+
+  /* Form Container */
+  form {
+    background-color: var(--card-background);
+    padding: calc(var(--spacing-unit) * 2);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto calc(var(--spacing-unit) * 2);
+    border: 1px solid var(--border-color);
+  }
+
+  /* Form Groups */
+  form div {
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+  }
+
+  /* Labels */
+  label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  /* Text Inputs and Textareas */
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: calc(var(--border-radius) * 0.5);
+    border: 1px solid var(--input-border);
+    background-color: var(--card-background);
+    color: var(--text-primary);
+    transition: all var(--transition-speed);
+    box-shadow: var(--shadow-sm);
+  }
+
+  input[type="text"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.35);
+  }
+
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+
+  /* Buttons */
+  button[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+  }
+
+  button[type="submit"]:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--danger-color);
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    form {
+      margin: 0 var(--spacing-unit);
+      padding: var(--spacing-unit);
+    }
+    
+    h1 {
+      padding: var(--spacing-unit);
+      font-size: 1.5rem;
+    }
+
+    button[type="submit"],
+    .cancel-link {
+      width: 100%;
+    }
+  }
+</style>
+
+<h1>New Task</h1>
+<form action="/tasks" method="POST">
+  <div>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description"></textarea>
+  </div>
+  <button type="submit">Create Task</button>
+  <a href="/tasks">Cancel</a>
+</form>
+
+<%- include('../partials/footer') %> <!-- Include Footer -->

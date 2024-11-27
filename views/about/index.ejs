@@ -1,0 +1,206 @@
+<%- include('../partials/header') %> <!-- Include Header -->
+
+<style>
+  /* Basic styling for the about page */
+  :root {
+    --primary-color: #4f46e5;
+    --secondary-color: #6366f1;
+    --background-color: #f9fafb;
+    --widget-background: #ffffff;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --spacing-unit: 1rem;
+    --border-radius: 0.75rem;
+    --transition-speed: 0.2s;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  /* Base Styles */
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  /* Header Styles */
+  .site-header {
+    background-color: var(--widget-background);
+    padding: var(--spacing-unit);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .site-header .logo a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: color var(--transition-speed);
+  }
+
+  .site-header .navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: var(--spacing-unit);
+  }
+
+  .site-header .navigation a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed);
+  }
+
+  .site-header .navigation a:hover {
+    color: var(--primary-color);
+    background-color: #f3f4f6;
+  }
+
+  /* About Page Header */
+  .about-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--spacing-unit);
+    border-radius: var(--border-radius);
+    text-align: center;
+  }
+
+  .about-header h1 {
+    margin: 0;
+    font-size: 2rem;
+  }
+
+  /* About Content */
+  .about-content {
+    margin-top: var(--spacing-unit);
+  }
+
+  .about-content h2 {
+    font-size: 1.75rem;
+    color: var(--text-primary);
+  }
+
+  .about-content p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Team Section */
+  .team {
+    margin-top: calc(var(--spacing-unit) * 2);
+  }
+
+  .team h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+  }
+
+  .team ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .team li {
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+  }
+
+  .team li p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+  }
+
+  .team li strong {
+    color: var(--text-primary);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .container {
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: static;
+      border-right: none;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .main-content {
+      padding: var(--spacing-unit);
+    }
+
+    .widgets {
+      grid-template-columns: 1fr;
+    }
+
+    .dashboard-header {
+      padding: var(--spacing-unit);
+    }
+
+    .dashboard-header h1 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<div class="container">
+  <!-- About Page Header -->
+  <div class="about-header">
+    <h1>About Us</h1>
+  </div>
+
+  <!-- About Content -->
+  <div class="about-content">
+    <h2>Welcome to Our Application</h2>
+    <p>
+      Our application is designed to help you manage tasks more efficiently.
+      We aim to make your task management process smooth and easy, providing features
+      like creating, updating, and deleting tasks.
+    </p>
+    <p>
+      We believe that staying organized and keeping track of your progress is essential,
+      and our goal is to make this process as seamless as possible.
+    </p>
+  </div>
+
+  <!-- Team Section -->
+  <div class="team">
+    <h3>Our Team</h3>
+    <ul>
+      <li>
+        <p><strong>John Doe</strong> - Founder & CEO</p>
+        <p>John leads the development team and oversees the strategic direction of the company.</p>
+      </li>
+      <li>
+        <p><strong>Jane Smith</strong> - Lead Developer</p>
+        <p>Jane is responsible for the technical implementation and ensures everything runs smoothly.</p>
+      </li>
+      <li>
+        <p><strong>Emily Johnson</strong> - Product Manager</p>
+        <p>Emily handles user feedback, feature prioritization, and the overall product vision.</p>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<%- include('../partials/footer') %> <!-- Include Footer -->

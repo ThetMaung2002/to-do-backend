@@ -1,0 +1,245 @@
+<%- include('../partials/header') %>
+
+<style>
+  /* Basic styling for the dashboard layout */
+  :root {
+  --primary-color: #4f46e5;
+  --secondary-color: #6366f1;
+  --background-color: #f9fafb;
+  --widget-background: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --spacing-unit: 1rem;
+  --border-radius: 0.75rem;
+  --transition-speed: 0.2s;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.site-header {
+  background-color: var(--widget-background);
+  padding: var(--spacing-unit);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header .logo a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: color var(--transition-speed);
+}
+
+.site-header .navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--spacing-unit);
+}
+
+.site-header .navigation a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-speed);
+}
+
+.site-header .navigation a:hover {
+  color: var(--primary-color);
+  background-color: #f3f4f6;
+}
+
+/* Layout */
+.container {
+  display: flex;
+  min-height: 100vh;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-unit);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background-color: var(--widget-background);
+  padding: calc(var(--spacing-unit) * 2);
+  border-right: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: calc(var(--spacing-unit) * 1.5);
+  color: var(--text-primary);
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin: calc(var(--spacing-unit) * 0.5) 0;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-speed);
+}
+
+.sidebar a:hover {
+  color: var(--primary-color);
+  background-color: #f3f4f6;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  padding: calc(var(--spacing-unit) * 2);
+  max-width: 100%;
+}
+
+.dashboard-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: calc(var(--spacing-unit) * 2);
+  border-radius: var(--border-radius);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  box-shadow: var(--shadow-md);
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Widgets */
+.widgets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: calc(var(--spacing-unit) * 1.5);
+  margin-top: calc(var(--spacing-unit) * 2);
+}
+
+.widget {
+  background-color: var(--widget-background);
+  padding: calc(var(--spacing-unit) * 1.5);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.widget:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.widget h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.widget p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0;
+  }
+  
+  .sidebar {
+    width: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .main-content {
+    padding: var(--spacing-unit);
+  }
+  
+  .widgets {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-header {
+    padding: var(--spacing-unit);
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+}
+</style>
+
+<div class="container">
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="dashboard-header">
+      <h1>Welcome to Your Dashboard</h1>
+    </div>
+
+    <div class="widgets">
+      <div class="widget">
+        <h3>Recent Activity</h3>
+        <p>Updated your task list and added new entries.</p>
+      </div>
+      <div class="widget">
+        <h3>Statistics</h3>
+        <p>You've completed 5 out of 10 tasks this week.</p>
+      </div>
+      <div class="widget">
+        <h3>Messages</h3>
+        <p>You have 3 unread messages.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
